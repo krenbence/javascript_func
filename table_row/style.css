@@ -3,6 +3,6 @@ table, tr, td , th, thead{
     border-collapse: collapse;
 }
 
-tr td:nth-last-child(3){
+tr td:nth-last-child(3), td:nth-last-child(1){
     background-color: green;
 }

@@ -3,6 +3,42 @@ table, tr, td , th, thead{
     border-collapse: collapse;
 }
 
-tr td:nth-last-child(3), td:nth-last-child(1){
+tr td:nth-last-child(3), td:last-child{
     background-color: green;
+}
+
+#gyakorlas{
+    background-color: fuchsia;
+}
+
+button:has(+p){
+    background-color: aquamarine
+}
+
+button:has(+button){
+    background-color: blanchedalmond;
+}
+
+#gyakorlas:has(+a:hover) button{
+    color: blueviolet;
+}
+
+tr:not(:has(td[rowspan]))+tr:not(:has(td[rowspan])):hover td{
+    background-color: rgb(255, 0, 0);
+}
+
+tr:has(td[rowspan]):hover td{
+    background-color: #00ff4c;
+}
+
+tr:has(td[rowspan]):hover +tr td{
+    background-color: #f776ff;
+}
+
+tr:has(td[rowspan]):has(+tr:hover) td{
+    background-color: hotpink;
+}
+
+tr:has(td[rowspan]) +tr:hover td{
+    background-color: rgb(104,155,200);
 }

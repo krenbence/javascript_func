@@ -1,44 +1,69 @@
-table, tr, td , th, thead{
+table, tr, td , th, thead{   
+    /* Az összes táblázat, sor, cella, fejléc és thead elem köré 
+       1px vastag piros pontozott szegélyt rajzol. */
     border: dotted 1px red;
+
+    /* A táblázat szegélyeit összecsúsztatja, hogy ne legyen dupla vonal. */
     border-collapse: collapse;
 }
 
 tr td:nth-last-child(3), td:last-child{
+    /* A sorok harmadik celláját hátulról számolva, illetve az utolsó cellát
+       zöld háttérszínnel színezi. */
     background-color: green;
 }
 
 #gyakorlas{
+    /* Az id="gyakorlas" elem háttérszíne fukszia lesz. */
     background-color: fuchsia;
 }
 
 button:has(+p){
-    background-color: aquamarine
+    /* Olyan <button>-t keres, amit közvetlenül egy <p> követ. 
+       Ezeknek a gomboknak aquamarine (világoskékeszöld) háttérszínt ad. */
+    background-color: aquamarine;
 }
 
 button:has(+button){
+    /* Olyan <button>-t keres, amit közvetlenül egy másik <button> követ. 
+       Ezeknek blanchedalmond (világos bézses) háttérszínt ad. */
     background-color: blanchedalmond;
 }
 
 #gyakorlas:has(+a:hover) button{
+    /* Ha a #gyakorlas elem után közvetlenül egy <a> link van, 
+       és az éppen hover állapotban van, 
+       akkor a #gyakorlas-on belüli gomb szövegszíne kékeslila (blueviolet) lesz. */
     color: blueviolet;
 }
 
 tr:not(:has(td[rowspan]))+tr:not(:has(td[rowspan])):hover td{
+    /* Ha egy olyan <tr> következik, amelyben nincs rowspan attribútumos <td>, 
+       és ezt a sort hover állapotban tartjuk,
+       akkor annak az összes cellája piros háttérszínt kap. */
     background-color: rgb(255, 0, 0);
 }
 
 tr:has(td[rowspan]):hover td{
+    /* Ha egy olyan <tr>-t hoverezünk, amely tartalmaz rowspan attribútumos cellát,
+       akkor a teljes sor cellái zöld (#00ff4c) színű háttérszínt kapnak. */
     background-color: #00ff4c;
 }
 
 tr:has(td[rowspan]):hover +tr td{
+    /* Ha egy rowspan-os sor van hover állapotban,
+       akkor a közvetlen utána következő sor cellái rózsaszínes-lila (#f776ff) háttérszínt kapnak. */
     background-color: #f776ff;
 }
 
 tr:has(td[rowspan]):has(+tr:hover) td{
+    /* Ha egy rowspan-os sort követő következő sor van hover állapotban,
+       akkor maga a rowspan-os sor kap hotpink háttérszínt. */
     background-color: hotpink;
 }
 
 tr:has(td[rowspan]) +tr:hover td{
+    /* Ha egy rowspan-os sort követő sor van hover állapotban,
+       akkor annak a sornak a cellái világoskékes (#689bc8) háttérszínt kapnak. */
     background-color: rgb(104,155,200);
 }

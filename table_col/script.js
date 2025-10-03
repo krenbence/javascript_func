@@ -19,7 +19,7 @@ console.log(b[1])
  * while()
 */
 for(const key in b){
-
+ 
 }
 
 for(const key in b){

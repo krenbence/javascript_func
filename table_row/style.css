@@ -1,12 +1,17 @@
-table, tr, td , th, thead{
-    border: dotted 1px red;
+tr, td {
+    border: dotted 5px rgb(0, 0, 0);
     border-collapse: collapse;
-}
+    }
+    
 
 tr td:nth-last-child(3), td:last-child{
     background-color: green;
 }
 
+tr:nth-child(2n) {
+    background-color: yellow;
+    }
+    
 #gyakorlas{
     background-color: fuchsia;
 }
@@ -41,4 +46,8 @@ tr:has(td[rowspan]):has(+tr:hover) td{
 
 tr:has(td[rowspan]) +tr:hover td{
     background-color: rgb(104,155,200);
+}
+
+#gyakorlas:last-child:hover label {
+	background-color: yellow;
 }

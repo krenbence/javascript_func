@@ -1,0 +1,29 @@
+table, tr, td , th, thead{
+    border: dotted 1px red;
+    border-collapse: collapse;
+}
+
+td:last-child{
+    background-color: rgb(128, 255, 0);
+}
+
+td:first-child{
+    background-color: rgb(0, 255, 255);
+}
+
+tr:has(td[colspan]):hover td{
+    background-color: rgb(255, 255, 0);
+    font-weight: bold;
+}
+
+tr:has(td[colspan]):hover +tr td{
+    background-color: blue;
+}
+
+tr:has(td[colspan]) + tr:hover td {
+    background-color: #f776ff;
+}
+
+tr:not(:has([colspan])):hover td {
+    background-color: rgb(255, 0, 0);
+}

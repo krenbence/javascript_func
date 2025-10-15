@@ -32,7 +32,7 @@ button:has(+p){
 button:has(+button){
     /* Olyan <button>-t keres, amit közvetlenül egy másik <button> követ. 
        Ezeknek blanchedalmond (világos bézses) háttérszínt ad. */
-    background-color: blanchedalmond;
+    background-color: rgb(255, 153, 0);
 }
 
 #gyakorlas:has(+a:hover) button{

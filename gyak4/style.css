@@ -1,0 +1,16 @@
+table, tr, td{
+    border: 3px green dotted;
+    border-collapse: collapse;
+}
+
+tr:nth-last-child(2n){
+    background-color: blue;
+}
+
+#dolgozat > .error{
+    color: red;
+}
+
+#dolgozat:has(a[href="cica.html"]:hover) > div{
+    background-color: red;
+}

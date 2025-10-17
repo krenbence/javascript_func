@@ -118,3 +118,15 @@ for (const elem of arr) {
         td4.innerText = elem.lover2
     }
 }
+
+/**
+ * létrehozunk egy táblázat cellát a bemeneti paraméterek alapján és hozzá fűzzük
+ * @param {string} celltype td, th
+ * @param {string} cellcontent a cella tartalma 
+ * @param {HTMLTableRowElement} parentrow sor amihez hozzá appendeljük
+ */
+function createcell(celltype, cellcontent, parentrow){
+    const td = document.createElement(celltype)
+    td.innerText = cellcontent
+    parentrow.appendChild(td)
+}

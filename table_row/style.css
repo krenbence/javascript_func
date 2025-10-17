@@ -72,3 +72,4 @@ tr:has(td[rowspan]) +tr:hover td{
        akkor annak a sornak a cellái világoskékes (#689bc8) háttérszínt kapnak. */
     background-color: rgb(104,155,200);
 }
+

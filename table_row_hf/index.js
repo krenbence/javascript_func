@@ -29,7 +29,7 @@ const arr = [
     }
 ]
 
-const t=["Harc megnevezése", "Szembenálló felek", "Haderő"]
+const t = ["Harc megnevezése", "Szembenálló felek", "Haderő"]
 
 const table = document.createElement("table")
 document.body.appendChild(table)

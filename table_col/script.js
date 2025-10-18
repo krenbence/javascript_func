@@ -73,17 +73,12 @@ table.appendChild(thead)
 const trHead = document.createElement("tr")
 thead.appendChild(trHead)
 
-const th1 = document.createElement("th")
-trHead.appendChild(th1)
-th1.innerText = "Szerző neve"
+createcell("th", "Szerző neve", trHead)
 
-const th2 = document.createElement("th")
-trHead.appendChild(th2)
-th2.innerText = "Korszak"
+createcell("th", "korszak", trHead)
 
-const th3 = document.createElement("th")
-trHead.appendChild(th3)
-th3.innerText = "Szerelmek"
+ const th3 = createcell("th", "Szerelmek", trHead)
+
 th3.colSpan = 2
 
 
@@ -95,23 +90,15 @@ for (const elem of arr) {
     const tr = document.createElement("tr")
     tbody.appendChild(tr)
 
-    const td1 = document.createElement("td")
-    tr.appendChild(td1)
-    td1.innerText = elem.author
+    createcell("td", elem.author, tr)
 
-    const td2 = document.createElement("td")
-    tr.appendChild(td2)
-    td2.innerText = elem.era
+    createcell("td", elem.era, tr)
 
     if (typeof elem.lover2 === "undefined") {
-        const td3 = document.createElement("td")
-        tr.appendChild(td3)
-        td3.innerText = elem.lover1
+        const td3 = createcell("td", elem.lover1, tr)
         td3.colSpan = 2
     } else {
-        const td3 = document.createElement("td")
-        tr.appendChild(td3)
-        td3.innerText = elem.lover1
+        createcell("td", elem.lover1, tr)
 
         const td4 = document.createElement("td")
         tr.appendChild(td4)
@@ -121,12 +108,15 @@ for (const elem of arr) {
 
 /**
  * létrehozunk egy táblázat cellát a bemeneti paraméterek alapján és hozzá fűzzük
- * @param {string} celltype td, th
+ * @param {string} celltype td, vagy th
  * @param {string} cellcontent a cella tartalma 
  * @param {HTMLTableRowElement} parentrow sor amihez hozzá appendeljük
+ * 
+ * @returns {HTMLTableCellElement} a létrehozott cellával térünk vissza hogy később tudjuk módosítani annak a tulajdonságát
  */
 function createcell(celltype, cellcontent, parentrow){
-    const td = document.createElement(celltype)
-    td.innerText = cellcontent
-    parentrow.appendChild(td)
+    const valami = document.createElement(celltype)
+    valami.innerText = cellcontent
+    parentrow.appendChild(valami)
+    return valami
 }

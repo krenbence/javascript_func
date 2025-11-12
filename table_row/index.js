@@ -32,6 +32,7 @@ const table = document.createElement("table")
 const thead = document.createElement("thead")
 const tr = document.createElement("tr")
 const tbody = document.createElement("tbody")
+tbody.id = "doby"
 
 document.body.appendChild(table)
 table.appendChild(thead)
@@ -41,16 +42,20 @@ table.appendChild(tbody)
 /**
  * @type {{fejlec:string}[]}
  */
-const fejlec = ["Nemzetiseg", "Szerző", "Mű"]
+    const fejlec = ["Nemzetiseg", "Szerző", "Mű"]
 
     for(const i of fejlec){
         const th = document.createElement("th")
         tr.appendChild(th)
         th.innerText = i
     }
-    for(const i of arr){
+
+function renderTableBody(tomb){
+    const doby = document.getElementById("doby")
+    doby.innerText = ""
+        for(const i of tomb){
         const tr = document.createElement("tr")
-        tdoby.appendChild(tr)
+        doby.appendChild(tr)
         const td1 = document.createElement("td")
         tr.appendChild(td1)
         const td2 = document.createElement("td")
@@ -72,7 +77,7 @@ const fejlec = ["Nemzetiseg", "Szerző", "Mű"]
         if (i.name2 && i.title2){
             td1.rowSpan = "2"
             const tr = document.createElement("tr")
-            tdoby.appendChild(tr)
+            doby.appendChild(tr)
             const td4 = document.createElement("td")
             tr.appendChild(td4)
             td1.rowSpan = "2"
@@ -82,12 +87,61 @@ const fejlec = ["Nemzetiseg", "Szerző", "Mű"]
             td5.innerText = i.title2
     }
 }
+}
+
+renderTableBody(arr)
+
+const jsform = document.createElement("form")
+jsform.id = "jsform"
+document.body.appendChild(jsform)
+
+const button = document.createElement("button")
+jsform.appendChild(button)
+button.innerText = "hozzáadás"
+
+createFormElement(jsform, "Nemzetiseg:", "nemzetiseg")
+createFormElement(jsform, "Szerző:", "szerzo1")
+createFormElement(jsform, "Mű:", "mu1")
+createFormElement(jsform, "Másik Szerző:", "szerzo2")
+createFormElement(jsform, "Mű:", "mu2")
+
+/**
+ * @param {HTMLElement}
+ */
+function breakLine(parentelement){
+    const br = document.createElement("br")
+    parentelement.appendChild(br)
+}
+
+/**
+ * 
+ * @param {HTMLFormElement} form 
+ * @param {string} szoveg 
+ * @param {string} id 
+ */
+function createFormElement(form, szoveg, id){
+    const label = document.createElement("label")
+    label.htmlFor = id
+    label.innerText = szoveg
+    form.appendChild(label)
+    breakLine(form)
+
+    const input = document.createElement("input")
+    input.type = "text"
+    input.id = id
+    input.name = id
+    form.appendChild(input)
+    breakLine(form)
+    breakLine(form)
+
+}
+
 
 /**
  * @type {HTMLFormElement}
  */
 const htmlform = document.getElementById("htmlform")
-addEventListener("submit",
+htmlform.addEventListener("submit",
     function (e){
         e.preventDefault()
         /**
@@ -147,8 +201,8 @@ addEventListener("submit",
        obj.name2 = szer2vol
        obj.title2 = mu2vol
 
-       const tbadi = document.getElementById("tbodi")
-       const tr = this.document.createElement("tr")
+       const tbadi = document.getElementById("tbody")
+       const tr = document.createElement("tr")
        tbadi.appendChild(tr)
        const td1 = document.createElement("td")
         tr.appendChild(td1)
@@ -170,7 +224,7 @@ addEventListener("submit",
 
         if(obj.name2 && obj.title2){
             td1.rowSpan = "2"
-            const tr = this.document.createElement("tr")
+            const tr = document.createElement("tr")
             tbadi.appendChild(tr)
             const td4 = document.createElement("td")
             tr.appendChild(td4)

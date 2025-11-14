@@ -236,3 +236,67 @@ htmlform.addEventListener("submit",
         }
     }
 )
+
+jsform.addEventListener("submit", function (e){
+    e.preventDefault()
+    /**
+     * @type {{nationality: string, name: string, title: string, name2: string, title2: string}}
+     */
+    const bj = {}
+
+    /**
+     * @type {HTMLFormElement}
+     */
+    const target = e.target
+
+    /**
+     * @type {HTMLInputElement}
+     */
+    const nemz = target.querySelector("#nemzetiseg")
+    /**
+     * @type {string}
+     */
+    const nemS = nemz.value
+    bj.nationality = nemS
+
+    /**
+     * @type {HTMLInputElement}
+     */
+    const szer1 = target.querySelector("#szerzo1")
+    /**
+     * @type {string}
+     */
+    const sze1S = szer1.value
+    bj.name = sze1S
+
+    /**
+     * @type {HTMLInputElement}
+     */
+    const mu1 = target.querySelector("#mu1")
+    /**
+     * @type {string}
+     */
+    const mu1S = mu1.value
+    bj.title = mu1S
+
+    /**
+     * @type {HTMLInputElement}
+     */
+    const szer2 = target.querySelector("#szerzo2")
+    /**
+     * @type {string}
+     */
+    const sze2S = szer2.value
+    bj.name2 = sze2S
+
+    /**
+     * @type {HTMLInputElement}
+     */
+    const mu2 = target.querySelector("#mu2")
+    /**
+     * @type {string}
+     */
+    const mu2S = mu2.value
+    bj.title2 = mu2S
+
+})

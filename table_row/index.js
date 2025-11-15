@@ -1,5 +1,8 @@
 /**
- * @type {{nationality: string, name: string, title: string, name2: string, title2: string}[]}
+ * @typedef {{nationality: string, name: string, title: string, name2: string, title2: string}} CountryWriters
+ */
+/**
+ * @type {CountryWriters[]}
  */
 
 const arr = [
@@ -42,18 +45,18 @@ table.appendChild(tbody)
 /**
  * @type {{fejlec:string}[]}
  */
-    const fejlec = ["Nemzetiseg", "Szerző", "Mű"]
+const fejlec = ["Nemzetiseg", "Szerző", "Mű"]
 
-    for(const i of fejlec){
-        const th = document.createElement("th")
-        tr.appendChild(th)
-        th.innerText = i
-    }
+for (const i of fejlec) {
+    const th = document.createElement("th")
+    tr.appendChild(th)
+    th.innerText = i
+}
 
-function renderTableBody(tomb){
+function renderTableBody(tomb) {
     const doby = document.getElementById("doby")
     doby.innerText = ""
-        for(const i of tomb){
+    for (const i of tomb) {
         const tr = document.createElement("tr")
         doby.appendChild(tr)
         const td1 = document.createElement("td")
@@ -66,7 +69,7 @@ function renderTableBody(tomb){
         td2.innerText = i.name
         td3.innerText = i.title
 
-        td1.addEventListener('click', function (e){
+        td1.addEventListener('click', function (e) {
             /**
              * @type {HTMLTableCellElement}
              */
@@ -74,7 +77,7 @@ function renderTableBody(tomb){
             target.classList.add("marked")
         })
 
-        if (i.name2 && i.title2){
+        if (i.name2 && i.title2) {
             td1.rowSpan = "2"
             const tr = document.createElement("tr")
             doby.appendChild(tr)
@@ -85,8 +88,8 @@ function renderTableBody(tomb){
             tr.appendChild(td5)
             td4.innerText = i.name2
             td5.innerText = i.title2
+        }
     }
-}
 }
 
 renderTableBody(arr)
@@ -108,7 +111,7 @@ createFormElement(jsform, "Mű:", "mu2")
 /**
  * @param {HTMLElement}
  */
-function breakLine(parentelement){
+function breakLine(parentelement) {
     const br = document.createElement("br")
     parentelement.appendChild(br)
 }
@@ -119,7 +122,7 @@ function breakLine(parentelement){
  * @param {string} szoveg 
  * @param {string} id 
  */
-function createFormElement(form, szoveg, id){
+function createFormElement(form, szoveg, id) {
     const label = document.createElement("label")
     label.htmlFor = id
     label.innerText = szoveg
@@ -142,7 +145,7 @@ function createFormElement(form, szoveg, id){
  */
 const htmlform = document.getElementById("htmlform")
 htmlform.addEventListener("submit",
-    function (e){
+    function (e) {
         e.preventDefault()
         /**
          * @type {HTMLFormElement}
@@ -190,21 +193,21 @@ htmlform.addEventListener("submit",
         const mu2vol = mu2.value
 
         /**
-        * @type {{nationality: string, name: string, title: string, name2: string, title2: string}}
+        * @type {CountryWriters}
         */
-       const obj = {
+        const obj = {
 
-       }
-       obj.nationality = nemzvol
-       obj.name = szer1vol
-       obj.title = mu1vol
-       obj.name2 = szer2vol
-       obj.title2 = mu2vol
+        }
+        obj.nationality = nemzvol
+        obj.name = szer1vol
+        obj.title = mu1vol
+        obj.name2 = szer2vol
+        obj.title2 = mu2vol
 
-       const tbadi = document.getElementById("tbody")
-       const tr = document.createElement("tr")
-       tbadi.appendChild(tr)
-       const td1 = document.createElement("td")
+        const tbadi = document.getElementById("tbody")
+        const tr = document.createElement("tr")
+        tbadi.appendChild(tr)
+        const td1 = document.createElement("td")
         tr.appendChild(td1)
         const td2 = document.createElement("td")
         tr.appendChild(td2)
@@ -214,7 +217,7 @@ htmlform.addEventListener("submit",
         td2.innerText = obj.name
         td3.innerText = obj.title
 
-        td1.addEventListener('click', function (e){
+        td1.addEventListener('click', function (e) {
             /**
              * @type {HTMLTableCellElement}
              */
@@ -222,7 +225,7 @@ htmlform.addEventListener("submit",
             target.classList.add("marked")
         })
 
-        if(obj.name2 && obj.title2){
+        if (obj.name2 && obj.title2) {
             td1.rowSpan = "2"
             const tr = document.createElement("tr")
             tbadi.appendChild(tr)
@@ -237,10 +240,10 @@ htmlform.addEventListener("submit",
     }
 )
 
-jsform.addEventListener("submit", function (e){
+jsform.addEventListener("submit", function (e) {
     e.preventDefault()
     /**
-     * @type {{nationality: string, name: string, title: string, name2: string, title2: string}}
+     * @type {CountryWriters}
      */
     const bj = {}
 
@@ -298,5 +301,5 @@ jsform.addEventListener("submit", function (e){
      */
     const mu2S = mu2.value
     bj.title2 = mu2S
-
+ 
 })

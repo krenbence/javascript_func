@@ -1,10 +1,10 @@
 /**
  * @typedef {{nationality: string, name: string, title: string, name2: string, title2: string}} CountryWriters
  */
+
 /**
  * @type {CountryWriters[]}
  */
-
 const arr = [
     {
         nationality: "Orosz",
@@ -31,116 +31,110 @@ const arr = [
         title: "Az átváltozás",
     },
 ]
-const table = document.createElement("table")
-document.body.appendChild(table)
 
-const tbody = document.createElement("tbody")
-table.appendChild(tbody)
-tbody.id = "doby"
-
-/**
- * @type {{fejlec:string}[]}
- */
-generateHeader(tbody, ["Nemzetiség", "Szerző", "Mű"])
-
+generateTable("doby", ["Nemzetiseg", "Szerző", "Mű"])
 renderTableBody(arr)
 
-const jsform = document.createElement("form")
-jsform.id = "jsform"
-document.body.appendChild(jsform)
+/**
+ * @type {LabInpAdat[]}
+ */
+const formArr = [
+    {
+        label: "Nemzetiség:",
+        input: "nemzetiseg",
+    },
+    {
+        label: "Szerző:",
+        input: "szerzo1",
+    },
+    {
+        label: "Mű:",
+        input: "mu1",
+    },
+    {
+        label: "Másik Szerző:",
+        input: "szerzo2",
+    },
+    {
+        label: "Mű:",
+        input: "mu2",
+    },
+]
 
-const button = document.createElement("button")
-jsform.appendChild(button)
-button.innerText = "hozzáadás"
-
-createFormElement(jsform, "Nemzetiseg:", "nemzetiseg")
-createFormElement(jsform, "Szerző:", "szerzo1")
-createFormElement(jsform, "Mű:", "mu1")
-createFormElement(jsform, "Másik Szerző:", "szerzo2")
-createFormElement(jsform, "Mű:", "mu2")
+/**
+ * @type {HTMLFormElement}
+ */
+const jsform = generateForm("jsform", formArr)
 
 /**
  * @type {HTMLFormElement}
  */
 const htmlform = document.getElementById("htmlform")
-htmlform.addEventListener("submit", htmlEventListener)
+htmlform.addEventListener("submit", addToHtmlTable)
 
 jsform.addEventListener("submit", function (e) {
     e.preventDefault()
-    /**
-     * @type {CountryWriters}
-     */
-    const bj = {}
 
-    /**
-     * @type {HTMLFormElement}
-     */
-    const target = e.target
+        /**
+         * @type {CountryWriters}
+         */
+        const obj = {}
+        /**
+         * @type {HTMLFormElement}
+         */
+        const target = e.target
 
-    /**
-     * @type {HTMLInputElement}
-     */
-    const nemz = target.querySelector("#nemzetiseg")
-    /**
-     * @type {string}
-     */
-    const nemS = nemz.value
-    bj.nationality = nemS
+        /**
+         * @type {HTMLFormElement}
+         */
+        const nemz = targetdefault.querySelector("#nemzetiseg")
+        /**
+         * @type {HTMLFormElement}
+         */
+        const szer1 = targetdefault.querySelector("#szerzo1")
+        /**
+         * @type {HTMLFormElement}
+         */
+        const mu1 = targetdefault.querySelector("#mu1")
+        /**
+         * @type {HTMLFormElement}
+         */
+        const szer2 = targetdefault.querySelector("#szerzo2")
+        /**
+         * @type {HTMLFormElement}
+         */
+        const mu2 = targetdefault.querySelector("#mu2")
 
-    /**
-     * @type {HTMLInputElement}
-     */
-    const szer1 = target.querySelector("#szerzo1")
-    /**
-     * @type {string}
-     */
-    const sze1S = szer1.value
-    bj.name = sze1S
+        if(validateFields(nemz, szer1, mu1)){
+            /**
+             * @type {string}
+             */
+            const nemzvol = nemz.value
+            /**
+             * @type {string}
+             */
+            const szer1vol = szer1.value
+            /**
+             * @type {string}
+             */
+            const mu1vol = mu1.value
+            /**
+             * @type {string}
+             */
+            const szer2vol = szer2.value
+            /**
+             * @type {string}
+             */
+            const mu2vol = mu2.value
 
-    /**
-     * @type {HTMLInputElement}
-     */
-    const mu1 = target.querySelector("#mu1")
-    /**
-     * @type {string}
-     */
-    const mu1S = mu1.value
-    bj.title = mu1S
+            obj.nationality = nemzvol
+            obj.name = szer1vol
+            obj.title = mu1vol
+            szer2vol = "" ? obj.name2 = undefined : obj.name2 = szer2vol
+            mu2vol = "" ? obj.title2 = undefined : obj.title2 = szer2vol
 
-    /**
-     * @type {HTMLInputElement}
-     */
-    const szer2 = target.querySelector("#szerzo2")
-    /**
-     * @type {string}
-     */
-    const sze2S = szer2.value
-    bj.name2 = sze2S
-
-    /**
-     * @type {HTMLInputElement}
-     */
-    const mu2 = target.querySelector("#mu2")
-    /**
-     * @type {string}
-     */
-    const mu2S = mu2.value
-    bj.title2 = mu2S
-
-    /**
-    * @type {CountryWriters}
-    */
-    const obj = {
-
-    }
-    obj.nationality = nemzvol
-    obj.name = szer1vol
-    obj.title = mu1vol
-    obj.name2 = szer2vol
-    obj.title2 = mu2vol
-
-    const doby = getElementById("doby")
-    doby.innerHTML = ""
-    arr.push(obj)
-    renderTableBody(arr)
+            arr.push(obj)
+            console.log(arr)
+            renderTableBody(arr)
+        }
 })

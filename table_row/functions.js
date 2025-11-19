@@ -1,65 +1,113 @@
-function htmlEventListener(e){
-    e.preventDefault()
-    /**
-     * @type {CountryWriters}
-     */
-    const bj = {}
+/**
+ * @param {HTMLElement}
+ */
+function breakLine(parentelement) {
+    const br = document.createElement("br")
+    parentelement.appendChild(br)
+}
 
-    /**
-     * @type {HTMLFormElement}
-     */
-    const target = e.target
+/**
+ * 
+ * @param {HTMLFormElement} form 
+ * @param {string} szoveg 
+ * @param {string} id 
+ */
+function createFormElement(form, szoveg, id) {
+    const div = document.createElement("div")
+    form.appendChild(div)
+    const label = document.createElement("label")
+    label.htmlFor = id
+    label.innerText = szoveg
+    div.appendChild(label)
+    breakLine(div)
 
-    /**
-     * @type {HTMLInputElement}
-     */
-    const nemz = target.querySelector("#nemzetiseg")
-    /**
-     * @type {string}
-     */
-    const nemS = nemz.value
-    bj.nationality = nemS
+    const input = document.createElement("input")
+    input.type = "text"
+    input.id = id
+    input.name = id
+    div.appendChild(input)
+    breakLine(div)
+    const span = document.createElement("span")
+    div.appendChild(span)
+    breakLine(div)
 
-    /**
-     * @type {HTMLInputElement}
-     */
-    const szer1 = target.querySelector("#szerzo1")
-    /**
-     * @type {string}
-     */
-    const sze1S = szer1.value
-    bj.name = sze1S
+}
 
-    /**
-     * @type {HTMLInputElement}
-     */
-    const mu1 = target.querySelector("#mu1")
-    /**
-     * @type {string}
-     */
-    const mu1S = mu1.value
-    bj.title = mu1S
+function htmlEventListener(e) {
+        e.preventDefault()
+        /**
+         * @type {HTMLFormElement}
+         */
+        const targetdefault = e.target
+        /**
+         * @type {HTMLFormElement}
+         */
+        const nemz = targetdefault.querySelector("#nemzetiseg")
+        /**
+         * @type {HTMLFormElement}
+         */
+        const szer1 = targetdefault.querySelector("#szerzo1")
+        /**
+         * @type {HTMLFormElement}
+         */
+        const mu1 = targetdefault.querySelector("#mu1")
+        /**
+         * @type {HTMLFormElement}
+         */
+        const szer2 = targetdefault.querySelector("#szerzo2")
+        /**
+         * @type {HTMLFormElement}
+         */
+        const mu2 = targetdefault.querySelector("#mu2")
+        /**
+         * @type {string}
+         */
+        const nemzvol = nemz.value
+        /**
+         * @type {string}
+         */
+        const szer1vol = szer1.value
+        /**
+         * @type {string}
+         */
+        const mu1vol = mu1.value
+        /**
+         * @type {string}
+         */
+        const szer2vol = szer2.value
+        /**
+         * @type {string}
+         */
+        const mu2vol = mu2.value
 
-    /**
-     * @type {HTMLInputElement}
-     */
-    const szer2 = target.querySelector("#szerzo2")
-    /**
-     * @type {string}
-     */
-    const sze2S = szer2.value
-    bj.name2 = sze2S
+        /**
+        * @type {CountryWriters}
+        */
+        const obj = {
 
-    /**
-     * @type {HTMLInputElement}
-     */
-    const mu2 = target.querySelector("#mu2")
-    /**
-     * @type {string}
-     */
-    const mu2S = mu2.value
-    bj.title2 = mu2S
+        }
+        obj.nationality = nemzvol
+        obj.name = szer1vol
+        obj.title = mu1vol
+        obj.name2 = szer2vol
+        obj.title2 = mu2vol
 
+        const tbadi = document.getElementById("default") 
+        tbadi.innerHTML = ""
+        renderTableRow(tbadi, obj)
+    }
+
+/** 
+ * @param {"th"|"td"} celltype
+ * @param {string} cellcontent
+ * @param {HTMLTableRowElement} parentrow
+ * @returns {HTMLTableCellElement}
+*/
+function createTableCell(celltype, cellcontent, parentrow) {
+    const cell = document.createElement(celltype)
+    cell.innerText = cellcontent
+    parentrow.appendChild(cell)
+    return cell
 }
 
 /**
@@ -73,22 +121,15 @@ function htmlEventListener(e){
  * @param {HTMLTableElement} table 
  * @param {string[]} headerlist 
  */
-
-/** 
- * @param {"th"|"td"} celltype
- * @param {string} cellcontent
- * @param {HTMLTableRowElement} parentrow
- * @returns {HTMLTableCellElement}
-*/
 function generateHeader(table,headerlist){
-    const thead = document.createElement(thead)
+    
+    const thead = document.createElement("thead")
     table.appendChild(thead)
-
     const tr = document.createElement("tr")
     thead.appendChild(tr)
 
-    for (const a of headerlist) {
-        createTableCell("th", a, tr)
+    for (const i of headerlist) {
+        createTableCell("th", i, tr)
     }
 }
 
@@ -96,18 +137,15 @@ function generateHeader(table,headerlist){
  * @param {HTMLTableSectionElement} tablebody
  * @param {CountryWriters} writerRow
  */
-function renderTableRaw(tablebody, writerRow) {
+function renderTableRow(tablebody, writerRow) {
     const tr = document.createElement("tr")
     tablebody.appendChild(tr)
-    const td1 = document.createElement("td")
-    tr.appendChild(td1)
-    const td2 = document.createElement("td")
-    tr.appendChild(td2)
-    const td3 = document.createElement("td")
-    tr.appendChild(td3)
-    td1.innerText = writerRow.nationality
-    td2.innerText = writerRow.name
-    td3.innerText = writerRow.title
+
+    const td1 = createTableCell("td", writerRow.nationality, tr)
+
+    createTableCell("td", writerRow.name, tr)
+
+    createTableCell("td", writerRow.title, tr)
 
     td1.addEventListener('click', function (e) {
         /**
@@ -115,18 +153,28 @@ function renderTableRaw(tablebody, writerRow) {
          */
         const target = e.target
         target.classList.add("marked")
+        const ancestor = target.parentElement.parentElement
+        const ance = ancestor.querySelector("marked")
+        if(ance) {
+            target.classList.remove("marked")
+        }
     })
 
     if (writerRow.name2 && writerRow.title2) {
         td1.rowSpan = "2"
-        const tr = document.createElement("tr")
-        tablebody.appendChild(tr)
-        const td4 = document.createElement("td")
-        tr.appendChild(td4)
-        td1.rowSpan = "2"
-        const td5 = document.createElement("td")
-        tr.appendChild(td5)
-        td4.innerText = writerRow.name2
-        td5.innerText = writerRow.title2
+        const tr2 = document.createElement("tr")
+        doby.appendChild(tr2)
+
+        createTableCell("td", writerRow.name2, tr2)
+
+        createTableCell("td", writerRow.title2, tr2)
+    }
+}
+
+function renderTableBody(tomb) {
+    const doby = document.getElementById("doby")
+    doby.innerText = ""
+    for (const i of tomb) {
+        renderTableRow(doby, i)
     }
 }

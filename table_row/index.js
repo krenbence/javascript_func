@@ -32,65 +32,16 @@ const arr = [
     },
 ]
 const table = document.createElement("table")
-const thead = document.createElement("thead")
-const tr = document.createElement("tr")
-const tbody = document.createElement("tbody")
-tbody.id = "doby"
-
 document.body.appendChild(table)
-table.appendChild(thead)
-thead.appendChild(tr)
+
+const tbody = document.createElement("tbody")
 table.appendChild(tbody)
+tbody.id = "doby"
 
 /**
  * @type {{fejlec:string}[]}
  */
-const fejlec = ["Nemzetiseg", "Szerző", "Mű"]
-
-for (const i of fejlec) {
-    const th = document.createElement("th")
-    tr.appendChild(th)
-    th.innerText = i
-}
-
-function renderTableBody(tomb) {
-    const doby = document.getElementById("doby")
-    doby.innerText = ""
-    for (const i of tomb) {
-        const tr = document.createElement("tr")
-        doby.appendChild(tr)
-        const td1 = document.createElement("td")
-        tr.appendChild(td1)
-        const td2 = document.createElement("td")
-        tr.appendChild(td2)
-        const td3 = document.createElement("td")
-        tr.appendChild(td3)
-        td1.innerText = i.nationality
-        td2.innerText = i.name
-        td3.innerText = i.title
-
-        td1.addEventListener('click', function (e) {
-            /**
-             * @type {HTMLTableCellElement}
-             */
-            const target = e.target
-            target.classList.add("marked")
-        })
-
-        if (i.name2 && i.title2) {
-            td1.rowSpan = "2"
-            const tr = document.createElement("tr")
-            doby.appendChild(tr)
-            const td4 = document.createElement("td")
-            tr.appendChild(td4)
-            td1.rowSpan = "2"
-            const td5 = document.createElement("td")
-            tr.appendChild(td5)
-            td4.innerText = i.name2
-            td5.innerText = i.title2
-        }
-    }
-}
+generateHeader(tbody, ["Nemzetiség", "Szerző", "Mű"])
 
 renderTableBody(arr)
 
@@ -109,136 +60,10 @@ createFormElement(jsform, "Másik Szerző:", "szerzo2")
 createFormElement(jsform, "Mű:", "mu2")
 
 /**
- * @param {HTMLElement}
- */
-function breakLine(parentelement) {
-    const br = document.createElement("br")
-    parentelement.appendChild(br)
-}
-
-/**
- * 
- * @param {HTMLFormElement} form 
- * @param {string} szoveg 
- * @param {string} id 
- */
-function createFormElement(form, szoveg, id) {
-    const label = document.createElement("label")
-    label.htmlFor = id
-    label.innerText = szoveg
-    form.appendChild(label)
-    breakLine(form)
-
-    const input = document.createElement("input")
-    input.type = "text"
-    input.id = id
-    input.name = id
-    form.appendChild(input)
-    breakLine(form)
-    breakLine(form)
-
-}
-
-
-/**
  * @type {HTMLFormElement}
  */
 const htmlform = document.getElementById("htmlform")
-htmlform.addEventListener("submit",
-    function (e) {
-        e.preventDefault()
-        /**
-         * @type {HTMLFormElement}
-         */
-        const targetdefault = e.target
-        /**
-         * @type {HTMLFormElement}
-         */
-        const nemz = targetdefault.querySelector("#nemzetiseg")
-        /**
-         * @type {HTMLFormElement}
-         */
-        const szer1 = targetdefault.querySelector("#szerzo1")
-        /**
-         * @type {HTMLFormElement}
-         */
-        const mu1 = targetdefault.querySelector("#mu1")
-        /**
-         * @type {HTMLFormElement}
-         */
-        const szer2 = targetdefault.querySelector("#szerzo2")
-        /**
-         * @type {HTMLFormElement}
-         */
-        const mu2 = targetdefault.querySelector("#mu2")
-        /**
-         * @type {string}
-         */
-        const nemzvol = nemz.value
-        /**
-         * @type {string}
-         */
-        const szer1vol = szer1.value
-        /**
-         * @type {string}
-         */
-        const mu1vol = mu1.value
-        /**
-         * @type {string}
-         */
-        const szer2vol = szer2.value
-        /**
-         * @type {string}
-         */
-        const mu2vol = mu2.value
-
-        /**
-        * @type {CountryWriters}
-        */
-        const obj = {
-
-        }
-        obj.nationality = nemzvol
-        obj.name = szer1vol
-        obj.title = mu1vol
-        obj.name2 = szer2vol
-        obj.title2 = mu2vol
-
-        const tbadi = document.getElementById("tbody")
-        const tr = document.createElement("tr")
-        tbadi.appendChild(tr)
-        const td1 = document.createElement("td")
-        tr.appendChild(td1)
-        const td2 = document.createElement("td")
-        tr.appendChild(td2)
-        const td3 = document.createElement("td")
-        tr.appendChild(td3)
-        td1.innerText = obj.nationality
-        td2.innerText = obj.name
-        td3.innerText = obj.title
-
-        td1.addEventListener('click', function (e) {
-            /**
-             * @type {HTMLTableCellElement}
-             */
-            const target = e.target
-            target.classList.add("marked")
-        })
-
-        if (obj.name2 && obj.title2) {
-            td1.rowSpan = "2"
-            const tr = document.createElement("tr")
-            tbadi.appendChild(tr)
-            const td4 = document.createElement("td")
-            tr.appendChild(td4)
-            td1.rowSpan = "2"
-            const td5 = this.document.createElement("td")
-            tr.appendChild(td5)
-            td4.innerText = obj.name2
-            td5.innerText = obj.title2
-        }
-    }
-)
+htmlform.addEventListener("submit", htmlEventListener)
 
 jsform.addEventListener("submit", function (e) {
     e.preventDefault()
@@ -301,5 +126,21 @@ jsform.addEventListener("submit", function (e) {
      */
     const mu2S = mu2.value
     bj.title2 = mu2S
- 
+
+    /**
+    * @type {CountryWriters}
+    */
+    const obj = {
+
+    }
+    obj.nationality = nemzvol
+    obj.name = szer1vol
+    obj.title = mu1vol
+    obj.name2 = szer2vol
+    obj.title2 = mu2vol
+
+    const doby = getElementById("doby")
+    doby.innerHTML = ""
+    arr.push(obj)
+    renderTableBody(arr)
 })

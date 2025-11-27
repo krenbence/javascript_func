@@ -26,13 +26,13 @@ const arr = [
     },
 ]
 
-const div = document.createElement("div")
-div.id = "jssection"
-div.classList.add("hide")
-document.body.appendChild(div)
+const jsdiv = document.createElement("div")
+jsdiv.id = "jssection"
+jsdiv.classList.add("hide")
+document.body.appendChild(jsdiv)
 
 const table = document.createElement("table")
-div.appendChild(table)
+jsdiv.appendChild(table)
 
 const thead = document.createElement("thead")
 table.appendChild(thead)
@@ -86,14 +86,14 @@ for (const elem of arr){
 
 const checkbox = document.getElementById("tableselector")
 const htmldiv = document.getElementById("htmlsection")
-const jsdiv = document.getElementById("jssection")
+const div = document.getElementById("jssection")
 if(checkbox.checked){
     htmldiv.classList.add("hide")
-    jsdiv.classList.remove("hide")
+    div.classList.remove("hide")
 }
 else{
     htmldiv.classList.remove("hide")
-    jsdiv.classList.add("hide")
+    div.classList.add("hide")
 }
 
 checkbox.addEventListener("change", function (e) {
@@ -108,3 +108,112 @@ else{
     jsdiv.classList.add("hide")
 }
 })
+// jsform létrehozás
+const jsform = document.createElement("form")
+jsdiv.appendChild(jsform)
+jsform.id = "jsform"
+
+// első div+feltöltése labe, input, span
+const divform1 = document.createElement("div")
+jsform.appendChild(divform1)
+
+const label1 = document.createElement("label")
+label1.innerText = "Ókori település"
+divform1.appendChild(label1)
+const br1 = document.createElement("br")
+divform1.appendChild(br1)
+
+const input1 = document.createElement("input")
+input1.type = "text"
+input1.id = "elso"
+input1.name = "telepules"
+divform1.appendChild(input1)
+
+const span1 = document.createElement("span")
+span1.classList.add("error")
+divform1.appendChild(span1)
+
+// második div+feltöltése labe, input, span
+const divform2 = document.createElement("div")
+jsform.appendChild(divform2)
+
+const label2 = document.createElement("label")
+label2.innerText = "Ágazat"
+divform2.appendChild(label2)
+const br2 = document.createElement("br")
+divform2.appendChild(br2)
+
+const input2 = document.createElement("input")
+input2.type = "text"
+input2.id = "masodik"
+input2.name = "agazat1"
+divform2.appendChild(input2)
+
+const span2 = document.createElement("span")
+span2.classList.add("error")
+divform2.appendChild(span2)
+
+// harmadik div+feltöltése labe, input, span
+const divform3 = document.createElement("div")
+jsform.appendChild(divform3)
+
+const label3 = document.createElement("label")
+label3.innerText = "Példa1"
+divform3.appendChild(label3)
+const br3 = document.createElement("br")
+divform3.appendChild(br3)
+
+const input3 = document.createElement("input")
+input3.type = "text"
+input3.id = "harmadik"
+input3.name = "pelda1"
+divform3.appendChild(input3)
+
+const span3 = document.createElement("span")
+span3.classList.add("error")
+divform3.appendChild(span3)
+
+// negyedik div+feltöltése labe, input, span
+const divform4 = document.createElement("div")
+jsform.appendChild(divform4)
+
+const label4 = document.createElement("label")
+label4.innerText = "Ágazat2"
+divform4.appendChild(label4)
+const br4 = document.createElement("br")
+divform4.appendChild(br4)
+
+const input4 = document.createElement("input")
+input4.type = "text"
+input4.id = "negyedik"
+input4.name = "agazat2"
+divform4.appendChild(input4)
+
+const span4 = document.createElement("span")
+span4.classList.add("error")
+divform4.appendChild(span4)
+
+// ötödik div+feltöltése labe, input, span
+const divform5 = document.createElement("div")
+jsform.appendChild(divform5)
+
+const label5 = document.createElement("label")
+label5.innerText = "Példa2"
+divform5.appendChild(label5)
+const br5 = document.createElement("br")
+divform5.appendChild(br5)
+
+const input5 = document.createElement("input")
+input5.type = "text"
+input5.id = "otodik"
+input5.name = "pelda2"
+divform5.appendChild(input5)
+
+const span5 = document.createElement("span")
+span5.classList.add("error")
+divform5.appendChild(span5)
+
+//gomb(os)
+const gomb = document.createElement("button")
+gomb.innerText = "Hozzáadás"
+jsform.appendChild(gomb)

@@ -16,10 +16,11 @@
         }
     </style>
 </head>
-<body>
+<body id="htmlbody">
 
     <label for="tableselector"></label>
-    <input type="checkbox" id="tableselector" checked>
+    <input type="checkbox" id="tableselector">
+<!-- #region ############## tablazat ################# -->
 <div id="htmlsection" class="hide">
     <table>
         <thead>
@@ -29,7 +30,7 @@
                 <th colspan="2">Példa</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="tbodi">
             <tr>
                 <td>Athén</td>
                 <td>politika</td>
@@ -59,6 +60,8 @@
             </tr>
         </tbody>
     </table>
+    <!-- #endregion -->
+    <!-- #region ############## form ################# -->
     <form id="htmlform">
         <div>
             <label for="place">Ókori település</label><br>
@@ -70,7 +73,6 @@
             <input type="text" id="masodik" name="agazat">
             <span class="error"></span>
         </div>
-        <div></div>
         <label for="example1">Példa1</label><br>
         <input type="text" id="harmadik" name="pelda1">
         <span class="error"></span>
@@ -80,6 +82,7 @@
         </div>
         <button>Hozzáadás</button>
     </form>
+    <!-- #endregion -->
 </div>
 </body>
 <script src="index.js"></script>

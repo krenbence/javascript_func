@@ -217,3 +217,84 @@ divform5.appendChild(span5)
 const gomb = document.createElement("button")
 gomb.innerText = "Hozzáadás"
 jsform.appendChild(gomb)
+
+const htmlformid = document.getElementById("htmlform")
+
+htmlformid.addEventListener("submit", function (e) {
+    (e).preventDefault()
+        
+        /**
+         * @type {HTMLFormElement}
+         */
+        const target = e.target
+
+        /**
+         * @type {HTMLFormElement}
+         */
+        const elso = targetdefault.querySelector("#elso")
+        /**
+         * @type {HTMLFormElement}
+         */
+        const masodik = targetdefault.querySelector("#masodik")
+        /**
+         * @type {HTMLFormElement}
+         */
+        const harmadik = targetdefault.querySelector("#harmadik")
+        /**
+         * @type {HTMLFormElement}
+         */
+        const negyedik = targetdefault.querySelector("#negyedik")
+
+            /**
+             * @type {string}
+             */
+            const elsoval = elso.value
+            /**
+             * @type {string}
+             */
+            const masodikval = masodik.value
+            /**
+             * @type {string}
+             */
+            const harmadikval = harmadik.value
+            /**
+             * @type {string}
+             */
+            const negyedikval = negyedik.value
+
+            /**
+            * @type {CountryWriters}
+            */
+            const obj = {}
+
+            obj.place = elsoval
+            obj.what1 = masodikval
+            obj.example1 = harmadikval
+            negyedikval = "" ? obj.example2 = undefined : obj.example2 = negyedikval
+
+            const tbodi = document.getElementById("tbodi")
+            const tr3 = document.createElement("tr")
+            tbodi.appendChild(tr3)
+            
+            const tdh1 = document.createElement("td")
+            tr3.appendChild(tdh1)
+            tdh1.innerText = elsoval
+
+            const tdh2 = document.createElement("td")
+            tr3.appendChild(tdh2)
+            tdh2.innerText = masodikval
+
+            const tdh3 = document.createElement("td")
+            tr3.appendChild(tdh3)
+            tdh3.innerText = harmadikval
+
+            if(negyedikval == "undefined"){
+                tdh3.colSpan = "2"
+            } else{
+                const tdh4 = document.createElement("td")
+                tr3.appendChild(tdh4)
+                tdh4.innerText = negyedikval
+            }
+            
+            htmlformid.reset()
+})

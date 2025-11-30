@@ -12,11 +12,11 @@ function breakLine(parentelement) {
 
 /**
  * 
- * @param {HTMLFormElement} form 
- * @param {string} szoveg 
- * @param {string} id 
+ * @param {HTMLFormElement} form
+ * @param {string} szoveg
+ * @param {string} id
  */
-function createFormElement(form, szoveg, id) {
+function createFormElement(form, szoveg, id) {                             
     const div = document.createElement("div")
     form.appendChild(div)
 

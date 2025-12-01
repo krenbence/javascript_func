@@ -14,6 +14,10 @@
        .hide{
             display:none;
         }
+        .error{
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body id="htmlbody">
@@ -64,21 +68,24 @@
     <!-- #region ############## form ################# -->
     <form id="htmlform">
         <div>
-            <label for="place">Ókori település</label><br>
+            <label for="elso">Ókori település</label><br>
             <input type="text" id="elso" name="pelda">
             <span class="error"></span>
         </div>
         <div>
-            <label for="what1">Ágazat</label><br>
+            <label for="masodik">Ágazat</label><br>
             <input type="text" id="masodik" name="agazat">
             <span class="error"></span>
         </div>
-        <label for="example1">Példa1</label><br>
-        <input type="text" id="harmadik" name="pelda1">
-        <span class="error"></span>
         <div>
-            <label for="example2">Példa2</label><br>
+            <label for="harmadik">Példa1</label><br>
+            <input type="text" id="harmadik" name="pelda1">
+            <span class="error"></span>
+        </div>
+        <div>
+            <label for="negyedik">Példa2</label><br>
             <input type="text" id="negyedik" name="pelda2">
+            <span class="error"></span>
         </div>
         <button>Hozzáadás</button>
     </form>

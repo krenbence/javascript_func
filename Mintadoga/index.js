@@ -49,6 +49,7 @@ for (const i of headarr){
 }
 
 const tbody = document.createElement("tbody")
+tbody.id = "jsbody"
 table.appendChild(tbody)
 
 for (const elem of arr){
@@ -218,10 +219,176 @@ const gomb = document.createElement("button")
 gomb.innerText = "Hozzáadás"
 jsform.appendChild(gomb)
 
+const jsformid = document.getElementById("jsform")
+
+jsformid.addEventListener("submit", function (e) {
+    e.preventDefault()
+    
+        /**
+         * @type {HTMLFormElement}
+         */
+        const target = e.target
+
+        /**
+         * @type {HTMLInputElement}
+         */
+        const elso = target.querySelector("#elso")
+        /**
+         * @type {HTMLInputElement}
+         */
+        const masodik = target.querySelector("#masodik")
+        /**
+         * @type {HTMLInputElement}
+         */
+        const harmadik = target.querySelector("#harmadik")
+        /**
+         * @type {HTMLInputElement}
+         */
+        const negyedik = target.querySelector("#negyedik")
+        /**
+         * @type {HTMLInputElement}
+         */
+        const otodik = target.querySelector("#otodik")
+
+        if(validateFields(elso,masodik,harmadik) && (validateFields2(negyedik,otodik))){
+            /**
+             * @type {string}
+             */
+            const elsoval = elso.value
+            /**
+             * @type {string}
+             */
+            const masodikval = masodik.value
+            /**
+             * @type {string}
+             */
+            const harmadikval = harmadik.value
+            /**
+             * @type {string}
+             */
+            const negyedikval = negyedik.value
+            /**
+             * @type {string}
+             */
+            const otodikval = otodik.value
+
+            /**
+            * @type {CountryWriters}
+            */
+            const obj = {}
+
+        obj.place = elsoval
+        obj.what1 = masodikval
+        obj.example1 = harmadikval
+        obj.example2 = negyedikval
+        obj.what2 = otodikval
+
+        arr.push(obj)
+        const jsbody = document.getElementById("jsbody")
+        jsbody.innerHTML = ""
+        for (const elem of arr){
+    const tr = document.createElement("tr")
+    jsbody.appendChild(tr)
+    
+    const td = document.createElement("td")
+    tr.appendChild(td)
+    td.innerText = elem.place
+
+    const td2 = document.createElement("td")
+    tr.appendChild(td2)
+    td2.innerText = elem.what1
+
+    const td3 = document.createElement("td")
+    tr.appendChild(td3)
+    td3.innerText = elem.example1
+
+    if(elem.what2 && elem.example2){
+        td.rowSpan = "2"
+        const tr2 = document.createElement("tr")
+        jsbody.appendChild(tr2)
+        
+        const td4 = document.createElement("td")
+        tr2.appendChild(td4)
+        td4.innerText = elem.what2
+
+        const td5 = document.createElement("td")
+        tr2.appendChild(td5)
+        td5.innerText = elem.example2
+    }
+}
+        }else if(validateFields(elso,masodik,harmadik)){
+           /**
+             * @type {string}
+             */
+            const elsoval = elso.value
+            /**
+             * @type {string}
+             */
+            const masodikval = masodik.value
+            /**
+             * @type {string}
+             */
+            const harmadikval = harmadik.value
+            /**
+             * @type {string}
+             */
+            const negyedikval = negyedik.value
+            /**
+             * @type {string}
+             */
+            const otodikval = otodik.value
+
+            /**
+            * @type {CountryWriters}
+            */
+            const obj = {}
+
+        obj.place = elsoval
+        obj.what1 = masodikval
+        obj.example1 = harmadikval
+        obj.example2 = negyedikval
+        obj.what2 = otodikval
+
+        arr.push(obj)
+        const jsbody = document.getElementById("jsbody")
+        jsbody.innerHTML = ""
+        for (const elem of arr){
+    const tr = document.createElement("tr")
+    jsbody.appendChild(tr)
+    
+    const td = document.createElement("td")
+    tr.appendChild(td)
+    td.innerText = elem.place
+
+    const td2 = document.createElement("td")
+    tr.appendChild(td2)
+    td2.innerText = elem.what1
+
+    const td3 = document.createElement("td")
+    tr.appendChild(td3)
+    td3.innerText = elem.example1
+
+    if(elem.what2 && elem.example2){
+        td.rowSpan = "2"
+        const tr2 = document.createElement("tr")
+        jsbody.appendChild(tr2)
+        
+        const td4 = document.createElement("td")
+        tr2.appendChild(td4)
+        td4.innerText = elem.what2
+
+        const td5 = document.createElement("td")
+        tr2.appendChild(td5)
+        td5.innerText = elem.example2
+    }
+}
+        }
+})
+
 const htmlformid = document.getElementById("htmlform")
 
 htmlformid.addEventListener("submit", function (e) {
-    (e).preventDefault()
+    e.preventDefault()
         
         /**
          * @type {HTMLFormElement}
@@ -229,22 +396,23 @@ htmlformid.addEventListener("submit", function (e) {
         const target = e.target
 
         /**
-         * @type {HTMLFormElement}
+         * @type {HTMLInputElement}
          */
-        const elso = targetdefault.querySelector("#elso")
+        const elso = target.querySelector("#elso")
         /**
-         * @type {HTMLFormElement}
+         * @type {HTMLInputElement}
          */
-        const masodik = targetdefault.querySelector("#masodik")
+        const masodik = target.querySelector("#masodik")
         /**
-         * @type {HTMLFormElement}
+         * @type {HTMLInputElement}
          */
-        const harmadik = targetdefault.querySelector("#harmadik")
+        const harmadik = target.querySelector("#harmadik")
         /**
-         * @type {HTMLFormElement}
+         * @type {HTMLInputElement}
          */
-        const negyedik = targetdefault.querySelector("#negyedik")
+        const negyedik = target.querySelector("#negyedik")
 
+        if(validateFields(elso, masodik, harmadik)){
             /**
              * @type {string}
              */
@@ -270,7 +438,8 @@ htmlformid.addEventListener("submit", function (e) {
             obj.place = elsoval
             obj.what1 = masodikval
             obj.example1 = harmadikval
-            negyedikval = "" ? obj.example2 = undefined : obj.example2 = negyedikval
+            obj.example2 = negyedikval
+            //negyedikval = "" ? obj.example2 = undefined : obj.example2 = negyedikval
 
             const tbodi = document.getElementById("tbodi")
             const tr3 = document.createElement("tr")
@@ -288,13 +457,63 @@ htmlformid.addEventListener("submit", function (e) {
             tr3.appendChild(tdh3)
             tdh3.innerText = harmadikval
 
-            if(negyedikval == "undefined"){
-                tdh3.colSpan = "2"
-            } else{
+            if(negyedikval){
                 const tdh4 = document.createElement("td")
                 tr3.appendChild(tdh4)
                 tdh4.innerText = negyedikval
+            } else{
+                tdh3.colSpan = "2"
             }
-            
             htmlformid.reset()
+        }
 })
+
+/**
+ * 
+ * @param {HTMLInputElement} inputElement1 
+ * @param {HTMLInputElement} inputElement2 
+ * @param {HTMLInputElement} inputElement3 
+ * @returns {boolean}
+ */
+function validateFields(inputElement1, inputElement2, inputElement3){
+    let valid = true
+    if(validateField(inputElement1, "kötelező kitölteni") == false){valid = false}
+    if(validateField(inputElement2, "kötelező kitölteni") == false){valid = false}
+    if(validateField(inputElement3, "kötelező kitölteni") == false){valid = false}
+    return valid
+}
+
+/**
+ * 
+ * @param {HTMLInputElement} inputElement1 
+ * @param {HTMLInputElement} inputElement2 
+ * @returns {boolean}
+ */
+function validateFields2(inputElement1, inputElement2){
+    let valid = true
+    if(validateField(inputElement1, "kötelező kitölteni") == false){valid = false}
+    if(validateField(inputElement2, "kötelező kitölteni") == false){valid = false}
+    return valid
+}
+
+/**
+ * 
+ * @param {HTMLInputElement} htmlIputfield 
+ * @param {string} hibaUzenet 
+ * @returns {boolean}
+ */
+function validateField(htmlIputfield, hibaUzenet){
+    let valid = true
+    if(htmlIputfield.value == ""){
+        const szulo = htmlIputfield.parentElement
+        const szulO = szulo.querySelector(".error")
+        szulO.innerText = hibaUzenet
+        valid = false
+    }
+    else{
+        const szulo = htmlIputfield.parentElement
+        const szulO = szulo.querySelector(".error")
+        szulO.innerText = ""
+    }
+    return valid
+}
